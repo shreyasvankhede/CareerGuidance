@@ -2,10 +2,16 @@
 ### *Your Personal AI Career Guidance Counselor*
 
 HireTrail AI is a conversational AI career assistant that helps students and professionals navigate their career journey. It combines real-time web search, resume analysis, interview preparation, and personalized career advice — all through a single chat interface.
-
+---
+##Run on cloud
+Hiretrail (hosted via render, there might be some latency):-https://hiretrail-app.onrender.com/
+---
 ---
 ## Screenshots
-
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/717856c7-cf91-4cc2-bd4e-047f0d846a2f" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9af1ebd0-61d3-40e2-bade-c230ee517db7" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/b084e34f-8743-4eab-8ce8-4c127a24299b" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/7aced1e3-019c-42b1-95d9-b7a3f42d4719" />
 ---
 
 ---
