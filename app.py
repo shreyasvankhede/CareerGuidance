@@ -4,6 +4,29 @@ import PyPDF2
 import io
 import random
 import os 
+import time
+import requests
+
+
+BACKEND_URL = os.getenv("BACKEND_URL")
+
+def wake_backend():
+    for _ in range(10):  # try for ~50 seconds
+        try:
+            r = requests.get(f"{BACKEND_URL}/health", timeout=5)
+            if r.status_code == 200:
+                return True
+        except:
+            pass
+        time.sleep(5)
+    return False
+
+if "backend_ready" not in st.session_state:
+    with st.spinner("🚀 Waking AI server (first load takes ~30s)..."):
+        wake_backend()
+    st.session_state.backend_ready = True
+
+
 AVATAR_OPTIONS = [
     "avatars/dog.png",
     "avatars/cat.png",
