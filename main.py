@@ -22,6 +22,10 @@ app.add_middleware(
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+    
 SEARCH_TOOL = [
     {
         "type": "function",
