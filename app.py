@@ -10,22 +10,20 @@ import requests
 
 BACKEND_URL = os.getenv("BACKEND_URL")
 
-def wake_backend():
-    for _ in range(10):  # try for ~50 seconds
-        try:
-            r = requests.get(f"{BACKEND_URL}/health", timeout=5)
-            if r.status_code == 200:
-                return True
-        except:
-            pass
-        time.sleep(5)
-    return False
-
 if "backend_ready" not in st.session_state:
-    with st.spinner("🚀 Waking AI server (first load takes ~30s)..."):
-        wake_backend()
+    placeholder = st.empty()
+    placeholder.info("🚀 Waking up the AI server... this takes ~30s on first load.")
+    with st.spinner("Please wait..."):
+        ready = wake_backend()
+    placeholder.empty()
+    if ready:
+        st.success("✅ Server is ready!")
+        time.sleep(1)
+        st.rerun()
+    else:
+        st.error("⚠️ Server took too long to wake. Please refresh the page.")
+        st.stop()
     st.session_state.backend_ready = True
-
 
 AVATAR_OPTIONS = [
     "avatars/dog.png",
