@@ -293,7 +293,7 @@ class ChatRequest(BaseModel):
 
 @app.get("/")
 def home():
-    return {"message": "HireTrail API is running!"}
+    return {"message": "HireTrail API is running!,You may load the app and reload the page on https://hiretrail-app.onrender.com"}
 
 
 def do_tavily_search(query: str) -> str:
