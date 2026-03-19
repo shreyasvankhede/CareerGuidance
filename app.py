@@ -8,12 +8,12 @@ import time
 import requests
 
 
-BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000").rstrip("/")
+BACKEND_URL = os.getenv("BACKEND_URL", "https://hiretrail-api.onrender.com").rstrip("/")
 
 def wake_backend():
-    for _ in range(12):
+    for _ in range(3):  # only try 3 times now
         try:
-            r = requests.get(f"{BACKEND_URL}/health", timeout=6)
+            r = requests.get(f"{BACKEND_URL}/", timeout=6)
             if r.status_code == 200:
                 return True
         except:
@@ -22,7 +22,7 @@ def wake_backend():
     return False
 
 if "backend_ready" not in st.session_state:
-    st.session_state.backend_ready = False  # ← initialize first
+    st.session_state.backend_ready = False
 
 if not st.session_state.backend_ready:
     placeholder = st.empty()
@@ -31,14 +31,29 @@ if not st.session_state.backend_ready:
         ready = wake_backend()
     placeholder.empty()
     if ready:
-        st.session_state.backend_ready = True  # ← set BEFORE rerun
+        st.session_state.backend_ready = True
         st.success("✅ Server is ready!")
         time.sleep(1)
         st.rerun()
     else:
-        st.error("⚠️ Server took too long to wake. Please refresh the page.")
+        st.error("⚠️ Server is still waking up.")
+        st.markdown("""
+        **The backend server needs a manual wake-up:**
+        
+        **Step 1** — Click below to open the backend and wait for it to load:
+        """)
+        st.link_button(
+            "🔗 Wake Up Backend Server",
+            "https://hiretrail-api.onrender.com",
+            type="primary"
+        )
+        st.markdown("""
+        **Step 2** — Once you see `HireTrail API is running!` in that tab, come back and click:
+        """)
+        if st.button("✅ Backend is awake, continue →", type="secondary"):
+            st.session_state.backend_ready = True
+            st.rerun()
         st.stop()
-    
 
 
 
