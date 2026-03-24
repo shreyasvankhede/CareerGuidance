@@ -296,7 +296,14 @@ class ChatRequest(BaseModel):
 def home():
     return {"message": "HireTrail API is running!,You may load the app and reload the page on https://hiretrail-app.onrender.com"}
 
+@app.api_route("/health", methods=["GET", "HEAD"])
+async def health_check():
+    return {"status": "healthy", "message": "HireTrail API is running!"}
 
+@app.api_route("/", methods=["GET", "HEAD"])
+async def home():
+    return {"message": "Welcome to HireTrail API"}
+    
 def do_tavily_search(query: str) -> str:
     """Helper function to search Tavily and format results."""
     try:
