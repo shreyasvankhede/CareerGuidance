@@ -292,11 +292,11 @@ class ChatRequest(BaseModel):
     resume_text: str = ""
 
 
-@app.get("/", methods=["GET", "HEAD"])
+@app.get("/")
 def home():
     return {"message": "HireTrail API is running!,You may load the app and reload the page on https://hiretrail-app.onrender.com"}
 
-@app.api_route("/health", methods=["GET", "HEAD"])
+@app.api_route("/health")
 async def health_check():
     return {"status": "healthy", "message": "HireTrail API is running!"}
 
