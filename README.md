@@ -171,10 +171,6 @@ pypdf2
 python-dotenv
 ```
 
-Generate `requirements.txt`:
-```bash
-pip freeze > requirements.txt
-```
 
 ---
 
